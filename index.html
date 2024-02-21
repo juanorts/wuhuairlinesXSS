@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Wuhu Airlines - Enviar sugerencias</title>
+        <link rel="icon" type="image/x-icon" href="/resources/logo.ico">
+        <link rel="stylesheet" href="/css/style.css">
+        <meta name="description" content="Envie una sugerencia para el equipo de Atención al Cliente de Wuhu Airlines">
+    </head>
+    <body>
+        <img src="/resources/Wuhu Airlines Logo.png" alt="Logo de Wuhu Airlines">
+        <br>
+        <h1>Formulario de sugerencias</h1>
+        <form>
+            <textarea id="sugerencia" name="sugerencia" placeholder="Escriba aquí su sugerencia para el equipo de Atención al cliente de Wuhu Airlines..." cols="60" rows="10"></textarea>
+            <br>
+            <button type="button" name="bXSS" onclick="vulnXSS()">Enviar sugerencia (XSS)</button>
+            <button type="button" name="bXSS" onclick="sanXSS()">Enviar sugerencia (Sanitización XSS)</button>
+        </form>
+
+        <div id="result"></div>
+
+        <script>
+            function vulnXSS() {
+                document.getElementById("result").innerHTML = String("Sugerencia: " + document.getElementById("sugerencia").value);
+            }
+
+            function sanXSS() {
+                document.getElementById("result").innerHTML = String("Sugerencia: " + DOMPurify.sanitize(document.getElementById("sugerencia").value));
+            }
+        </script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.3/purify.min.js"></script>
+    </body>
+    <footer>
+        <p>Wuhu Airlines © 2024</p>
+    </footer>
+</html>
